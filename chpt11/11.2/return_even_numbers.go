@@ -3,30 +3,23 @@ package main
 import f "fmt"
 
 func main() {
-	f.Println("hi")
-	j := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	f.Println((j))
+	j := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 22, 24, 25, 26}
+	f.Println(return_even_nums(j))
 }
 
 func return_even_nums(a []int) []int {
-
-}
-
-func return_even_nums(a []int) []int {
-	b := []int{}
 	if len(a) == 0 {
-		return b
+		return a
 	}
 	if len(a) == 1 {
 		if a[0]%2 == 0 {
-			return append(b, a[0])
+			return []int{a[0]}
 		} else {
-			return b
+			return []int{}
 		}
 	}
 	if a[0]%2 == 0 {
-		return return_even_nums(append(b, a[0]))
-	} else {
-		return return_even_nums(b)
+		return append([]int{a[0]}, return_even_nums(a[1:])...)
 	}
+	return return_even_nums(a[1:])
 }
