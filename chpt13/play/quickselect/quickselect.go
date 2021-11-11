@@ -5,20 +5,27 @@ import f "fmt"
 func main() {
 	nums := []int{55, 66, 77, 3, 4, 9, 2, 0, 33, 22, 7, 8, 11, 5, 10}
 	f.Println(nums)
-	qsort(nums, 0, len(nums)-1)
+	qselect(nums, 0, len(nums)-1, 5) // Lets find the 5th largest value
 	f.Println(nums)
+	f.Println(nums[4])
 }
 
-func qselect(nums []int, l int, r int) {
+func qselect(nums []int, l int, r int, v int) {
 	if r-l <= 0 {
 		return
 	}
 	var pivot int = qpartition(nums, l, r)
 	//f.Println(pivot)
-	qsort(nums, l, pivot-1)
-	qsort(nums, pivot+1, r)
+	if v < pivot {
+		qselect(nums, l, pivot-1, v)
+	} else if v > pivot {
+		qselect(nums, pivot+1, r, v)
+	}
 }
 
+// Partition the array such that all items to the left of pivot are smaller than it
+// and all values to the right of it are larger than it.
+// Return pivot location in the array when complete.
 func qpartition(nums []int, l int, r int) int {
 	var pivot int = r
 	r = r - 1
