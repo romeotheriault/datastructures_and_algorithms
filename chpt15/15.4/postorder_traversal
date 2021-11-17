@@ -1,0 +1,16 @@
+func (bst *treenode) postOrderPrint() {
+	if bst == nil {
+		return
+	}
+	bst.left.postOrderPrint()
+	bst.right.postOrderPrint()
+	fmt.Print(bst.data, ", ")
+}
+
+Alice in Wonderland
+Lord of the Flies
+Great Expectations
+Pride and Prejudice
+The Odyssey
+Robinson Crusoe
+Moby Dick
